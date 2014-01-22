@@ -26,9 +26,16 @@ void testApp::setup(){
     cout << "FilePath: " << dir.getAbsolutePath() << endl;
     cout << " " << endl;
     
+    ofVec2f nodePos(10,50);
+    ofVec2f nodeSize(200,17);
+    
     for (int i = 0; i < dir.numFiles(); i++) {
-        files.push_back(dir.getPath(i));
-        cout << dir.getAbsolutePath() << "/" << files[i] << endl;
+        string filePath = dir.getAbsolutePath() + "/" + dir.getPath(i);
+        files.push_back(filePath);
+        cout << files[i] << endl;
+        
+        nodes.push_back(Node(nodePos, nodeSize, filePath));
+        nodePos += ofVec2f(0,20);
         
     }
 
@@ -44,8 +51,8 @@ void testApp::draw(){
     
     
     ofBackground(0);
-    ofFill();
     
+    /*
     int y = 14;
     
     for(int i = 0; i < files.size(); ++i)
@@ -53,6 +60,12 @@ void testApp::draw(){
         ofSetColor(255);
         ofDrawBitmapString(files.at(i), 10, y);
         y += 14;
+        
+    }
+     */
+    
+    for (int i = 0; i < nodes.size(); i++) {
+        nodes[i].draw();
     }
 
 }

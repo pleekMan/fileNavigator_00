@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxIO.h"
+#include "Node.h"
 
 using namespace ofx::IO;
 
@@ -46,6 +47,7 @@ class testApp : public ofBaseApp{
     CustomPathFilter pathFilter;
     std::deque<std::string> messages;
     vector<string> files;
+    vector<Node> nodes;
                       
 };
 
