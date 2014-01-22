@@ -3,6 +3,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    cout << "-------------------oo" << endl;
+    cout << "-------------------oo" << endl;
+    
     ofSetFrameRate(30);
     ofSetVerticalSync(true);
     //ofEnableAlphaBlending();
@@ -11,21 +14,21 @@ void testApp::setup(){
     ofBackground(0);
     ofSetBackgroundAuto(true);
     
-    DirectoryUtils dirUtil;
+    //DirectoryUtils dirUtil;
     
     ofDirectory dir("");
-    dir.allowExt("rtf");
+
     dir.listDir();
     
-    dirUtil.list("", files, true, &pathFilter); // Default to "data" folder
-    dirUtil.list(dir, files);
+
+    cout << "FileCount: " << dir.numFiles() << endl;
+    cout << "FilePath: " << dir.getPath(0) << endl;
+    cout << "FilePath: " << dir.getAbsolutePath() << endl;
+    cout << " " << endl;
     
-    cout << "oo----------oo" << endl;
-    cout << "FileCount: " << files.size() << endl;
-    
-    for (int i = 0; i < files.size(); i++) {
-        //ofSendMessage(ofMessage(files[i]));
-        cout << files[i] << endl;
+    for (int i = 0; i < dir.numFiles(); i++) {
+        files.push_back(dir.getPath(i));
+        cout << dir.getAbsolutePath() << "/" << files[i] << endl;
         
     }
 
@@ -48,7 +51,7 @@ void testApp::draw(){
     for(int i = 0; i < files.size(); ++i)
     {
         ofSetColor(255);
-        ofDrawBitmapString(files[i], 10, y);
+        ofDrawBitmapString(files.at(i), 10, y);
         y += 14;
     }
 
